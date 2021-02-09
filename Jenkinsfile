@@ -22,7 +22,7 @@ pipeline {
         
         stage('Security') {
              steps {
-                 sh 'trivy image --format json --output trivy-results.json debian:latest' 
+                 sh 'trivy image --format json --output trivy-results.json nginx:latest' 
              }
              post {
                  always {
