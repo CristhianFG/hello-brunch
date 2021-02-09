@@ -22,7 +22,7 @@ pipeline {
         
         stage('Security') {
              steps {
-                 sh 'trivy image --format json --output trivy-results.json debian:10.8' 
+                 sh 'trivy image --format json --output trivy-results.json node:lts-buster' 
              }
              post {
                  always {
