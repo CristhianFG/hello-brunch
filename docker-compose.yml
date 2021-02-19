@@ -7,6 +7,6 @@ services:
     ports:
       - "80:80"
     logging:
-      driver: syslog
+      driver: loki
       options:
-        syslog-address: tcp://10.250.1.5:5000
+        syslog-address: "http://10.250.1.5:5000/loki/api/v1/push"
