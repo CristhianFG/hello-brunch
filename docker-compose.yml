@@ -9,4 +9,4 @@ services:
     logging:
       driver: loki
       options:
-        syslog-address: "http://10.250.1.5:5000/loki/api/v1/push"
+        loki-url: "http://10.250.1.5:5000/loki/api/v1/push"
