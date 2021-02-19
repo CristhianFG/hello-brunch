@@ -6,7 +6,9 @@ services:
     build: .
     ports:
       - "80:80"
+    volumes:
+      - "html/:/usr/share/nginx/html"
     logging:
       driver: fluentd
       options:
-        fluentd-address: "http://10.250.1.5:3100/fluentdhost:24224"
+        fluentd-address: "10.250.1.5:24224"
