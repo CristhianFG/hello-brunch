@@ -7,6 +7,6 @@ services:
     ports:
       - "80:80"
     logging:
-      driver: syslog
+      driver: fluentd
       options:
-        syslog-address: tcp://10.250.1.5:5000
+        fluentd-address: "http://10.250.1.5:3100/fluentdhost:24224"
