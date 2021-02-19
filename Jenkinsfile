@@ -14,19 +14,15 @@ pipeline {
             }
         }
         
-        stage('Security') {
+        stage('Publish') {
              steps {
-                 sh 'trivy filesystem -f json -o trivy-fs.json'
-                 sh 'trivy image -f json -o trivy-image.json hello-brunch'
-                 recordIssues enabledForFailure: true, aggregatingResults: true, tool: trivy(pattern: 'trivy-*.json')
+                 withDockerRegistry([credentialsId: "gitlab-registry", url: "http://10.250.1.5:5050"]) {
+                     sh 'docker tag hello-brunch:latest 10.250.1.5:5050/root/hello-brunch:BUILD-${BUILD}'
+                     sh 'docker push 10.250.1.5:5050/root/hello-brunch:BUILD-${BUILD_NUMBER}'
+                 }
              }
         }
         
-        stage('deploy') {
-            steps {
-                sh 'docker-compose up -d'
-            }
-        }
     }
 }
 
